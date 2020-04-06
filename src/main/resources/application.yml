@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      username: user-app
+      password: temporal
+      port: 27017
+      database: apirest
+  jackson:
+    property-naming-strategy: SNAKE_CASE
