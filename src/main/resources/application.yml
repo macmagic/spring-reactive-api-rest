@@ -6,5 +6,7 @@ spring:
       password: temporal
       port: 27017
       database: apirest
+    rest:
+      base-path: /api
   jackson:
     property-naming-strategy: SNAKE_CASE

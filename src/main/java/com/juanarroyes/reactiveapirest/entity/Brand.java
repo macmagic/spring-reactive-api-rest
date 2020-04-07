@@ -5,24 +5,20 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Data
+@Builder
 @Document
-@Builder(toBuilder = true)
-public class Motorcycle {
+public class Brand {
 
     @Id
     private UUID _id;
 
-    private Brand brand;
+    private String name;
 
-    private String model;
+    private Date createdAt;
 
-    private Integer year;
-
-    private String licenseType;
-
-    private Integer seat;
-
+    private Date updatedAt;
 }
