@@ -13,9 +13,9 @@ public class MotorcycleDTO {
 
     private String model;
 
-    private Integer engineHp;
+    private Integer year;
 
-    private Integer engineTorque;
+    private String licenseType;
 
     private Integer engineDisplacement;
 
