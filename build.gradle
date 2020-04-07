@@ -1,7 +1,11 @@
+import com.diffplug.spotless.LineEnding
+
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'jacoco'
+    id 'com.diffplug.gradle.spotless' version '3.28.1'
 }
 
 group = 'com.juanarroyes'
@@ -31,4 +35,25 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+spotless {
+    java {
+        indentWithSpaces(4)
+        removeUnusedImports()
+        endWithNewline()
+        setEncoding('UTF-8')
+        setLineEndings(LineEnding.UNIX)
+    }
 }
