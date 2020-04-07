@@ -17,9 +17,5 @@ public class MotorcycleDTO {
 
     private String licenseType;
 
-    private Integer engineDisplacement;
-
     private Integer seat;
-
-    private Integer numberOfGears;
 }
