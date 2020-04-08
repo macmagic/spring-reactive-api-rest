@@ -41,12 +41,19 @@ public class MotorcycleService {
     public Mono<Motorcycle> update(UUID _id, MotorcycleDTO motorcycleDTO) {
         return repository.findById(_id)
                 .switchIfEmpty(Mono.error(new DataNotFoundException(String.format("Cannot find motorcycle by id: %s", _id.toString()))))
-                .flatMap(motorcycle -> brandService.createUniqueBrand(motorcycleDTO.getBrand())
-                         .flatMap(brand -> {
-                             Motorcycle motorcycleUpdated = MotorcycleMapper.updateFromDTO(motorcycleDTO, motorcycle);
-                             motorcycleUpdated.setBrand(brand);
-                             return repository.save(motorcycleUpdated);
-                         }));
+                .flatMap(motorcycle -> {
+                        if(motorcycleDTO.getBrand() != null) {
+                            return brandService.createUniqueBrand(motorcycleDTO.getBrand())
+                                    .flatMap(brand -> {
+                                        Motorcycle motorcycleUpdated = MotorcycleMapper.updateFromDTO(motorcycleDTO, motorcycle);
+                                        motorcycleUpdated.setBrand(brand);
+                                        return repository.save(motorcycleUpdated);
+                                    });
+                        } else {
+                            Motorcycle motorcycleUpdated = MotorcycleMapper.updateFromDTO(motorcycleDTO, motorcycle);
+                            return repository.save(motorcycleUpdated);
+                        }
+                });
     }
 
     public Mono<Void> delete(UUID id) {

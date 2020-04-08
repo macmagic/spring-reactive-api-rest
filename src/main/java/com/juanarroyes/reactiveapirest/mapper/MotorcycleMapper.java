@@ -18,9 +18,9 @@ public class MotorcycleMapper {
     public static Motorcycle updateFromDTO(MotorcycleDTO motorcycleDTO, Motorcycle motorcycle) {
         return motorcycle.toBuilder()
                 .model((motorcycleDTO.getModel() != null ) ? motorcycleDTO.getModel() : motorcycle.getModel())
-                .year((motorcycleDTO.getYear() != 0) ? motorcycleDTO.getYear() : motorcycle.getYear())
+                .year((motorcycleDTO.getYear() != null) ? motorcycleDTO.getYear() : motorcycle.getYear())
                 .licenseType((motorcycleDTO.getLicenseType() != null) ? motorcycleDTO.getLicenseType() : motorcycle.getLicenseType())
-                .seat((motorcycleDTO.getSeat() != 0) ? motorcycleDTO.getSeat() : motorcycle.getSeat())
+                .seat((motorcycleDTO.getSeat() != null) ? motorcycleDTO.getSeat() : motorcycle.getSeat())
                 .build();
     }
 }

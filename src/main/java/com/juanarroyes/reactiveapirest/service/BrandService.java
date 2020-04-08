@@ -19,7 +19,7 @@ public class BrandService {
 
     public Mono<Brand> createUniqueBrand(String brandName) {
         return brandRepository.findBrandByName(brandName)
-                .switchIfEmpty(this.createBrand(brandName));
+                .switchIfEmpty(Mono.defer(() -> this.createBrand(brandName))).log();
     }
 
     public Mono<Brand> createBrand(String brandName) {
