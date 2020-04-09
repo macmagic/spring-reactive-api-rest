@@ -56,7 +56,7 @@ public class MotorcycleServiceTest {
     public void testGetMotorcycleById() {
         UUID id = UUID.randomUUID();
         Motorcycle motorcycleExpected = Motorcycle.builder()
-                ._id(id)
+                .id(id)
                 .model("Test model")
                 .year(2000)
                 .licenseType("A")
@@ -85,13 +85,13 @@ public class MotorcycleServiceTest {
         motorcycleDTO.setSeat(2);
 
         Brand brand = Brand.builder()
-                ._id(UUID.randomUUID())
+                .id(UUID.randomUUID())
                 .name("Test")
                 .createdAt(new Date())
                 .build();
 
         Motorcycle motorcycleExpected = Motorcycle.builder()
-                ._id(id)
+                .id(id)
                 .model(motorcycleDTO.getModel())
                 .licenseType(motorcycleDTO.getLicenseType())
                 .year(motorcycleDTO.getYear())
@@ -120,7 +120,7 @@ public class MotorcycleServiceTest {
         motorcycleDTO.setSeat(2);
 
         Motorcycle motorcycle = Motorcycle.builder()
-                ._id(id)
+                .id(id)
                 .model("Test model")
                 .licenseType("A")
                 .year(motorcycleDTO.getYear())
@@ -149,13 +149,13 @@ public class MotorcycleServiceTest {
         motorcycleDTO.setSeat(2);
 
         Brand brand = Brand.builder()
-                ._id(UUID.randomUUID())
+                .id(UUID.randomUUID())
                 .name("Test")
                 .createdAt(new Date())
                 .build();
 
         Motorcycle motorcycle = Motorcycle.builder()
-                ._id(id)
+                .id(id)
                 .model("Test model")
                 .licenseType("A")
                 .year(motorcycleDTO.getYear())
@@ -182,7 +182,7 @@ public class MotorcycleServiceTest {
     public void testDeleteMotorcycle() {
         UUID id = UUID.randomUUID();
         Motorcycle motorcycle = Motorcycle.builder()
-                ._id(id)
+                .id(id)
                 .model("Test model")
                 .licenseType("A")
                 .year(2000)
@@ -198,7 +198,7 @@ public class MotorcycleServiceTest {
         List<Motorcycle> list = new ArrayList<>();
         for(int i = 0; i< 3; i++) {
             Motorcycle motorcycle = Motorcycle.builder()
-                    ._id(UUID.randomUUID())
+                    .id(UUID.randomUUID())
                     .model("Test")
                     .licenseType("A")
                     .seat(2)

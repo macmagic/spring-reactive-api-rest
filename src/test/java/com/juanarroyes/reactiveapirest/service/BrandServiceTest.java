@@ -38,7 +38,7 @@ public class BrandServiceTest {
         UUID id = UUID.randomUUID();
 
         Brand brand = Brand.builder()
-                ._id(id)
+                .id(id)
                 .name("Test")
                 .createdAt(new Date())
                 .build();
@@ -56,7 +56,7 @@ public class BrandServiceTest {
         UUID id = UUID.randomUUID();
 
         Brand brand = Brand.builder()
-                ._id(id)
+                .id(id)
                 .name("Test")
                 .createdAt(new Date())
                 .build();
@@ -78,7 +78,7 @@ public class BrandServiceTest {
         UUID id = UUID.randomUUID();
 
         Brand brand = Brand.builder()
-                ._id(id)
+                .id(id)
                 .name("Test")
                 .createdAt(new Date())
                 .build();

@@ -1,6 +1,7 @@
 package com.juanarroyes.reactiveapirest.controller;
 
 import com.juanarroyes.reactiveapirest.dto.MotorcycleDTO;
+import com.juanarroyes.reactiveapirest.entity.Engine;
 import com.juanarroyes.reactiveapirest.entity.Motorcycle;
 import com.juanarroyes.reactiveapirest.service.MotorcycleService;
 import org.springframework.http.HttpStatus;
@@ -57,5 +58,10 @@ public class MotorcycleController {
     @DeleteMapping("{id}")
     public Mono<Void> delete(@PathVariable UUID id) {
         return motorcycleService.delete(id);
+    }
+
+    @GetMapping("{id}/engine")
+    public Mono<Engine> getEngineByMotorcycleId(@PathVariable UUID id) {
+        return motorcycleService.getEngineByMotorcycleId(id);
     }
 }
