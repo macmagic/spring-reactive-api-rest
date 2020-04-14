@@ -24,7 +24,7 @@ import java.util.UUID;
 @RequestMapping(value = "/api/v1/motorcycle", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 public class MotorcycleController {
 
-    private MotorcycleService motorcycleService;
+    private final MotorcycleService motorcycleService;
 
     public MotorcycleController(MotorcycleService motorcycleService) {
         this.motorcycleService = motorcycleService;

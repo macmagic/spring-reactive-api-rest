@@ -1,5 +1,13 @@
 package com.juanarroyes.reactiveapirest.dto;
 
+import lombok.AllArgsConstructor;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class EngineDTO {
 
     private String model;
@@ -30,6 +38,17 @@ public class EngineDTO {
 
     private String fuelType;
 
+    private String antipollutionRegulation;
 
+    private String starterType;
 
+    private String primaryTransmission;
+
+    private String secondaryTransmission;
+
+    private String clutch;
+
+    private String clutchActuation;
+
+    private Integer numberOfGears;
 }

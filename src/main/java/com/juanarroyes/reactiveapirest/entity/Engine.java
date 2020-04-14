@@ -1,7 +1,10 @@
 package com.juanarroyes.reactiveapirest.entity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,6 +13,7 @@ import java.util.UUID;
 @Data
 @Builder
 @Document
+@AllArgsConstructor
 public class Engine {
 
    @Id
