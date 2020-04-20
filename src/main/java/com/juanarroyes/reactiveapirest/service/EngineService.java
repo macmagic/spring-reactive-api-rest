@@ -19,7 +19,7 @@ public class EngineService {
     private final EngineRepository repository;
 
     public Mono<Engine> createEngine(EngineDTO engineDTO) {
-        Engine engine = EngineMapper.INSTANCE.fromDTO(engineDTO);
+        Engine engine = EngineMapper.INSTANCE.fromDto(engineDTO);
         return repository.save(engine);
     }
 
@@ -36,10 +36,8 @@ public class EngineService {
         return repository.findById(id)
                 .switchIfEmpty(Mono.defer(() -> Mono.error(new DataNotFoundException(String.format("Cannot find the engine by id: %s", id.toString())))))
                 .flatMap(engine -> {
-                    Engine engineToUpdate = EngineMapper.INSTANCE.fromDTO(engineDTO);
-                    engineToUpdate.setId(engine.getId());
-                    //return repository.save(engineToUpdate);
-                    return Mono.empty();
+                    Engine engineUpdate = EngineMapper.INSTANCE.updateFromDto(engineDTO, engine);
+                    return repository.save(engineUpdate);
                 });
     }
 }
