@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Motorcycle {
 
     @Id
-    private UUID _id;
+    private UUID id;
 
     private Brand brand;
 
@@ -25,4 +25,5 @@ public class Motorcycle {
 
     private Integer seat;
 
+    private Engine engine;
 }

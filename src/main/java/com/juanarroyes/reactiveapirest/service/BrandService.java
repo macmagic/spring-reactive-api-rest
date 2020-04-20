@@ -25,7 +25,7 @@ public class BrandService {
     public Mono<Brand> createBrand(String brandName) {
         UUID uuid = UUID.randomUUID();
         Brand brand = Brand.builder()
-                ._id(uuid)
+                .id(uuid)
                 .name(brandName)
                 .createdAt(new Date())
                 .build();

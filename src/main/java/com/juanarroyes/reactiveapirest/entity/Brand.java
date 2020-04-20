@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Brand {
 
     @Id
-    private UUID _id;
+    private UUID id;
 
     private String name;
 

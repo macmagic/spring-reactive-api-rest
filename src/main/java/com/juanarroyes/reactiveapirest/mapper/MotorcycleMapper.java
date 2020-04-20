@@ -7,7 +7,7 @@ public class MotorcycleMapper {
 
     public static Motorcycle createFromDTO(MotorcycleDTO motorcycleDTO) {
         return Motorcycle.builder()
-                ._id(motorcycleDTO.getUuid())
+                .id(motorcycleDTO.getUuid())
                 .model(motorcycleDTO.getModel())
                 .year(motorcycleDTO.getYear())
                 .licenseType(motorcycleDTO.getLicenseType())
