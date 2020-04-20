@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "c79ecec3-a77e-4446-8d6e-8908348dc76d",
+		"name": "Motorcycle API REST DEV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Motorcycles",
+			"item": [
+				{
+					"name": "List of motorcycles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/motorcycles",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"motorcycles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a motorcycle by UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/motorcycles/444fb96d-c17f-490d-ad9c-c12a8fd3ab1e",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"motorcycles",
+								"444fb96d-c17f-490d-ad9c-c12a8fd3ab1e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create motorcycle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"brand\": \"KTM\",\n\t\"model\" : \"1290 SuperDuke GT\",\n\t\"year\": 2017,\n\t\"license_type\": \"A\",\n\t\"seat\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/motorcycles",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"motorcycles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update motorcycle by UUID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"model\" : \"1290 SuperDuke GT 2222\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/motorcycles/444fb96d-c17f-490d-ad9c-c12a8fd3ab1e",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"motorcycles",
+								"444fb96d-c17f-490d-ad9c-c12a8fd3ab1e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete motorcycle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"brand\": \"KTM\",\n\t\"model\" : \"1290 SuperDuke GT\",\n\t\"year\": 2017,\n\t\"license_type\": \"A\",\n\t\"seat\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/motorcycles/d1c4a177-64e3-4d61-917e-058c15aeff05",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"motorcycles",
+								"d1c4a177-64e3-4d61-917e-058c15aeff05"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b9474f6-4e87-4dfd-890b-63f232103258",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f2b5a88-ec50-447d-bd41-cffc724b3cac",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Engines",
+			"item": [
+				{
+					"name": "Get engine by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/engines/1dec2533-98a9-44be-828d-6c5708547183",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"engines",
+								"1dec2533-98a9-44be-828d-6c5708547183"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get engine list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/engines",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"engines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create engine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"model\": \"LC8\",\n\t\"displacement\": 1301,\n\t\"type\": \"4T\",\n\t\"provision\": \"V at 75º\",\n\t\"distribution\": \"DOHC\",\n\t\"number_of_cylinders\": 2,\n\t\"valves_per_cylinder\": 4,\n\t\"power_type\": \"injection\",\n\t\"refrigeration\": \"water\",\n\t\"cv\": 175,\n\t\"kw\": 150,\n\t\"rpm_full_power\": 9500,\n\t\"torque\": 141,\n\t\"rpm_full_torque\": 6750,\n\t\"max_rpm\": 10500,\n\t\"fuel_type\": \"Gasoline 95/98\",\n\t\"antipollution_regulation\": \"Euro IV\",\n\t\"starter_type\": \"Electric CDI\",\n\t\"primary_transmission\": \"gear cascade\",\n\t\"secondary_transmission\": \"chain\",\n\t\"clutch\": \"oil-coated multi-disc with slipper\",\n\t\"clutch_actuation\": \"hydraulic\",\n\t\"number_of_gears\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/engines",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"engines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update engine",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"kw\": 130\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/engines/617e854e-a22a-4a36-b9f2-8f1e536bdf3f",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"engines",
+								"617e854e-a22a-4a36-b9f2-8f1e536bdf3f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete engine by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{motorcycle-api-host}}/api/v1/engines/617e854e-a22a-4a36-b9f2-8f1e536bdf3f",
+							"host": [
+								"{{motorcycle-api-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"engines",
+								"617e854e-a22a-4a36-b9f2-8f1e536bdf3f"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Brakes",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Suspensions",
+			"item": [],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54a9f881-0842-4979-b804-3ef5a8b29b9e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "103e72e0-7340-42c9-a876-83017da490de",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dimensions",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Wheels",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
