@@ -19,15 +19,19 @@ public class Engine {
 
    private Integer displacement;
 
-   private String enginePowerType;
+   private String type;
 
    private String provision;
+
+   private String distribution;
 
    private Integer numberOfCylinders;
 
    private Integer valvesPerCylinder;
 
    private String refrigeration;
+
+   private String powerType;
 
    private Integer cv;
 
