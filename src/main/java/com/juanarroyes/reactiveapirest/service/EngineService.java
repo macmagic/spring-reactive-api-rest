@@ -40,4 +40,10 @@ public class EngineService {
                     return repository.save(engineUpdate);
                 });
     }
+
+    public Mono<Void> deleteEngine(UUID id) {
+        return repository.findById(id)
+                .switchIfEmpty(Mono.defer(() -> Mono.error(new DataNotFoundException(String.format("Cannot find the engine by id: %s", id.toString())))))
+                .flatMap(repository::delete);
+    }
 }

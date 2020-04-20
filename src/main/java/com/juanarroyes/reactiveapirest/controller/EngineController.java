@@ -4,6 +4,7 @@ import com.juanarroyes.reactiveapirest.dto.EngineDTO;
 import com.juanarroyes.reactiveapirest.entity.Engine;
 import com.juanarroyes.reactiveapirest.service.EngineService;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,5 +52,11 @@ public class EngineController {
     @ResponseStatus(HttpStatus.OK)
     public Mono<Engine> updateEngine(@PathVariable UUID id, @RequestBody EngineDTO engineDTO) {
         return engineService.updateEngine(id, engineDTO);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Void> deleteEngine(@PathVariable UUID id) {
+        return engineService.deleteEngine(id);
     }
 }
