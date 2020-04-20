@@ -7,6 +7,7 @@ import com.juanarroyes.reactiveapirest.mapper.EngineMapper;
 import com.juanarroyes.reactiveapirest.repository.EngineRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -19,13 +20,26 @@ public class EngineService {
 
     public Mono<Engine> createEngine(EngineDTO engineDTO) {
         Engine engine = EngineMapper.INSTANCE.fromDTO(engineDTO);
-        System.out.println(engine.getClutch());
-        //return repository.save(engineDTO);
-        return null;
+        return repository.save(engine);
     }
 
     public Mono<Engine> getEngineById(UUID id) {
         return repository.findById(id)
                 .switchIfEmpty(Mono.defer(() -> Mono.error(new DataNotFoundException(String.format("Cannot find the engine by id: %s", id.toString())))));
+    }
+
+    public Flux<Engine> getEngineList() {
+        return repository.findAll();
+    }
+
+    public Mono<Engine> updateEngine(UUID id, EngineDTO engineDTO) {
+        return repository.findById(id)
+                .switchIfEmpty(Mono.defer(() -> Mono.error(new DataNotFoundException(String.format("Cannot find the engine by id: %s", id.toString())))))
+                .flatMap(engine -> {
+                    Engine engineToUpdate = EngineMapper.INSTANCE.fromDTO(engineDTO);
+                    engineToUpdate.setId(engine.getId());
+                    //return repository.save(engineToUpdate);
+                    return Mono.empty();
+                });
     }
 }

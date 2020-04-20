@@ -17,13 +17,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class MotorcycleService {
 
-    private MotorcycleRepository repository;
+    private final MotorcycleRepository repository;
 
-    private BrandService brandService;
+    private final BrandService brandService;
 
-    public Mono<Motorcycle> getMotorcycleById(UUID uuid) {
-        return repository.findById(uuid)
-                .switchIfEmpty(Mono.error(new DataNotFoundException(String.format("Cannot find the motorcycle by id %s", uuid.toString()))));
+    public Mono<Motorcycle> getMotorcycleById(UUID id) {
+        return repository.findById(id)
+                .switchIfEmpty(Mono.error(new DataNotFoundException(String.format("Cannot find the motorcycle by id %s", id.toString()))));
     }
 
     public Flux<Motorcycle> getMotorcycleList() {
@@ -39,9 +39,9 @@ public class MotorcycleService {
                 });
     }
 
-    public Mono<Motorcycle> update(UUID _id, MotorcycleDTO motorcycleDTO) {
-        return repository.findById(_id)
-                .switchIfEmpty(Mono.error(new DataNotFoundException(String.format("Cannot find motorcycle by id: %s", _id.toString()))))
+    public Mono<Motorcycle> update(UUID id, MotorcycleDTO motorcycleDTO) {
+        return repository.findById(id)
+                .switchIfEmpty(Mono.error(new DataNotFoundException(String.format("Cannot find motorcycle by id: %s", id.toString()))))
                 .flatMap(motorcycle -> {
                         if(motorcycleDTO.getBrand() != null) {
                             return brandService.createUniqueBrand(motorcycleDTO.getBrand())

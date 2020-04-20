@@ -7,16 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/api/v1/engine")
+@RequestMapping(value = "/api/v1/engines")
 public class EngineController {
 
     private final EngineService engineService;
@@ -25,14 +27,29 @@ public class EngineController {
         this.engineService = engineService;
     }
 
-    @PostMapping
+    @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
+    public Mono<Engine> getEngineById(@PathVariable UUID id) {
+        return engineService.getEngineById(id);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<Engine> getEngineList() {
+        return engineService.getEngineList();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Engine> createEngine(@RequestBody EngineDTO engineDTO) {
+        UUID uuid = UUID.randomUUID();
+        engineDTO.setId(uuid);
         return engineService.createEngine(engineDTO);
     }
 
-    @GetMapping("{id}")
-    public Mono<Engine> getEngine(@PathVariable UUID id) {
-        return engineService.getEngineById(id);
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Engine> updateEngine(@PathVariable UUID id, @RequestBody EngineDTO engineDTO) {
+        return engineService.updateEngine(id, engineDTO);
     }
 }

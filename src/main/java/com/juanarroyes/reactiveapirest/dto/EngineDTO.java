@@ -5,10 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class EngineDTO {
+
+    private UUID id;
 
     private String model;
 
@@ -18,9 +22,13 @@ public class EngineDTO {
 
     private String provision;
 
+    private String distribution;
+
     private Integer numberOfCylinders;
 
     private Integer valvesPerCylinder;
+
+    private String powerType;
 
     private String refrigeration;
 

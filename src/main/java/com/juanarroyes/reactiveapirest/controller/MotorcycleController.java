@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/api/v1/motorcycle", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/motorcycles", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 public class MotorcycleController {
 
     private final MotorcycleService motorcycleService;
@@ -30,12 +30,12 @@ public class MotorcycleController {
         this.motorcycleService = motorcycleService;
     }
 
-    @GetMapping("{uuid}")
-    public Mono<Motorcycle> getMotorcycleById(@PathVariable UUID uuid) {
-        return motorcycleService.getMotorcycleById(uuid);
+    @GetMapping("{id}")
+    public Mono<Motorcycle> getMotorcycleById(@PathVariable UUID id) {
+        return motorcycleService.getMotorcycleById(id);
     }
 
-    @GetMapping()
+    @GetMapping
     public Flux<Motorcycle> getListMotorcycle() {
         return motorcycleService.getMotorcycleList();
     }
@@ -48,11 +48,11 @@ public class MotorcycleController {
         return motorcycleService.create(motorcycleDTO);
     }
 
-    @PutMapping("{uuid}")
+    @PutMapping("{id}")
     public Mono<Motorcycle> update(
-            @PathVariable UUID uuid,
+            @PathVariable UUID id,
             @RequestBody MotorcycleDTO motorcycleDTO) {
-        return motorcycleService.update(uuid, motorcycleDTO);
+        return motorcycleService.update(id, motorcycleDTO);
     }
 
     @DeleteMapping("{id}")
