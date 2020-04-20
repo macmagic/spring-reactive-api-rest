@@ -16,7 +16,7 @@ public class EngineDTO {
 
     private String model;
 
-    private String displacement;
+    private Integer displacement;
 
     private String type;
 
