@@ -2,25 +2,27 @@ package com.juanarroyes.reactiveapirest.mapper;
 
 import com.juanarroyes.reactiveapirest.dto.MotorcycleDTO;
 import com.juanarroyes.reactiveapirest.entity.Motorcycle;
+import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.factory.Mappers;
 
-public class MotorcycleMapper {
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+public interface MotorcycleMapper {
 
-    public static Motorcycle createFromDTO(MotorcycleDTO motorcycleDTO) {
-        return Motorcycle.builder()
-                .id(motorcycleDTO.getUuid())
-                .model(motorcycleDTO.getModel())
-                .year(motorcycleDTO.getYear())
-                .licenseType(motorcycleDTO.getLicenseType())
-                .seat(motorcycleDTO.getSeat())
-                .build();
-    }
+    MotorcycleMapper INSTANCE = Mappers.getMapper(MotorcycleMapper.class);
 
-    public static Motorcycle updateFromDTO(MotorcycleDTO motorcycleDTO, Motorcycle motorcycle) {
-        return motorcycle.toBuilder()
-                .model((motorcycleDTO.getModel() != null ) ? motorcycleDTO.getModel() : motorcycle.getModel())
-                .year((motorcycleDTO.getYear() != null) ? motorcycleDTO.getYear() : motorcycle.getYear())
-                .licenseType((motorcycleDTO.getLicenseType() != null) ? motorcycleDTO.getLicenseType() : motorcycle.getLicenseType())
-                .seat((motorcycleDTO.getSeat() != null) ? motorcycleDTO.getSeat() : motorcycle.getSeat())
-                .build();
-    }
+    @Mapping(target = "brand", ignore = true)
+    MotorcycleDTO toDto(Motorcycle motorcycle);
+
+    @InheritInverseConfiguration(name = "toDto")
+    @Mapping(target = "brand", ignore = true)
+    @Mapping(target = "engine", ignore = true)
+    Motorcycle fromDto(MotorcycleDTO motorcycleDTO);
+
+    @Mapping(target = "brand", ignore = true)
+    @Mapping(target = "engine", ignore = true)
+    Motorcycle updateFromDto(MotorcycleDTO motorcycleDTO, @MappingTarget Motorcycle motorcycle);
 }

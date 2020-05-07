@@ -7,7 +7,7 @@ import java.util.UUID;
 @Data
 public class MotorcycleDTO {
 
-    private UUID uuid;
+    private UUID id;
 
     private String brand;
 

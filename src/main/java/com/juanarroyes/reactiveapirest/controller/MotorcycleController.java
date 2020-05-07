@@ -44,7 +44,7 @@ public class MotorcycleController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Motorcycle> create(@RequestBody MotorcycleDTO motorcycleDTO) {
         UUID uuid = UUID.randomUUID();
-        motorcycleDTO.setUuid(uuid);
+        motorcycleDTO.setId(uuid);
         return motorcycleService.create(motorcycleDTO);
     }
 
