@@ -1,15 +1,15 @@
 package com.juanarroyes.reactiveapirest.entity;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
 @Data
-@Document
-@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Motorcycle {
 
     @Id

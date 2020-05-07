@@ -33,7 +33,7 @@ public class MotorcycleService {
     public Mono<Motorcycle> create(MotorcycleDTO motorcycleDTO) {
         return brandService.createUniqueBrand(motorcycleDTO.getBrand())
                 .flatMap(brand -> {
-                    Motorcycle motorcycle = MotorcycleMapper.createFromDTO(motorcycleDTO);
+                    Motorcycle motorcycle = MotorcycleMapper.INSTANCE.fromDto(motorcycleDTO);
                     motorcycle.setBrand(brand);
                     return repository.save(motorcycle);
                 });
@@ -46,12 +46,12 @@ public class MotorcycleService {
                         if(motorcycleDTO.getBrand() != null) {
                             return brandService.createUniqueBrand(motorcycleDTO.getBrand())
                                     .flatMap(brand -> {
-                                        Motorcycle motorcycleUpdated = MotorcycleMapper.updateFromDTO(motorcycleDTO, motorcycle);
+                                        Motorcycle motorcycleUpdated = MotorcycleMapper.INSTANCE.updateFromDto(motorcycleDTO, motorcycle);
                                         motorcycleUpdated.setBrand(brand);
                                         return repository.save(motorcycleUpdated);
                                     });
                         } else {
-                            Motorcycle motorcycleUpdated = MotorcycleMapper.updateFromDTO(motorcycleDTO, motorcycle);
+                            Motorcycle motorcycleUpdated = MotorcycleMapper.INSTANCE.updateFromDto(motorcycleDTO, motorcycle);
                             return repository.save(motorcycleUpdated);
                         }
                 });

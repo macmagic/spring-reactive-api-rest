@@ -55,13 +55,13 @@ public class MotorcycleServiceTest {
     @Test
     public void testGetMotorcycleById() {
         UUID id = UUID.randomUUID();
-        Motorcycle motorcycleExpected = Motorcycle.builder()
-                .id(id)
-                .model("Test model")
-                .year(2000)
-                .licenseType("A")
-                .seat(2)
-                .build();
+
+        Motorcycle motorcycleExpected = new Motorcycle();
+        motorcycleExpected.setId(id);
+        motorcycleExpected.setModel("Test model");
+        motorcycleExpected.setLicenseType("A");
+        motorcycleExpected.setSeat(2);
+        motorcycleExpected.setYear(2000);
 
         given(repository.findById(id)).willReturn(Mono.just(motorcycleExpected));
 
@@ -77,7 +77,7 @@ public class MotorcycleServiceTest {
     public void testCreateMotorcycle() {
         UUID id = UUID.randomUUID();
         MotorcycleDTO motorcycleDTO = new MotorcycleDTO();
-        motorcycleDTO.setUuid(id);
+        motorcycleDTO.setId(id);
         motorcycleDTO.setBrand("Test");
         motorcycleDTO.setModel("Test model");
         motorcycleDTO.setYear(2000);
@@ -90,14 +90,13 @@ public class MotorcycleServiceTest {
                 .createdAt(new Date())
                 .build();
 
-        Motorcycle motorcycleExpected = Motorcycle.builder()
-                .id(id)
-                .model(motorcycleDTO.getModel())
-                .licenseType(motorcycleDTO.getLicenseType())
-                .year(motorcycleDTO.getYear())
-                .seat(motorcycleDTO.getSeat())
-                .brand(brand)
-                .build();
+        Motorcycle motorcycleExpected = new Motorcycle();
+        motorcycleExpected.setId(id);
+        motorcycleExpected.setModel(motorcycleDTO.getModel());
+        motorcycleExpected.setLicenseType(motorcycleDTO.getLicenseType());
+        motorcycleExpected.setSeat(motorcycleDTO.getSeat());
+        motorcycleExpected.setYear(motorcycleDTO.getYear());
+        motorcycleExpected.setBrand(brand);
 
         given(brandService.createUniqueBrand(eq(brand.getName()))).willReturn(Mono.just(brand));
         given(repository.save(any(Motorcycle.class))).willReturn(Mono.just(motorcycleExpected));
@@ -119,13 +118,12 @@ public class MotorcycleServiceTest {
         motorcycleDTO.setLicenseType("A");
         motorcycleDTO.setSeat(2);
 
-        Motorcycle motorcycle = Motorcycle.builder()
-                .id(id)
-                .model("Test model")
-                .licenseType("A")
-                .year(motorcycleDTO.getYear())
-                .seat(motorcycleDTO.getSeat())
-                .build();
+        Motorcycle motorcycle = new Motorcycle();
+        motorcycle.setId(UUID.randomUUID());
+        motorcycle.setModel("Test model");
+        motorcycle.setLicenseType("A");
+        motorcycle.setSeat(motorcycleDTO.getSeat());
+        motorcycle.setYear(motorcycleDTO.getYear());
 
         given(repository.findById(id)).willReturn(Mono.just(motorcycle));
         given(repository.save(any(Motorcycle.class))).willReturn(Mono.just(motorcycle));
@@ -154,14 +152,13 @@ public class MotorcycleServiceTest {
                 .createdAt(new Date())
                 .build();
 
-        Motorcycle motorcycle = Motorcycle.builder()
-                .id(id)
-                .model("Test model")
-                .licenseType("A")
-                .year(motorcycleDTO.getYear())
-                .seat(motorcycleDTO.getSeat())
-                .brand(brand)
-                .build();
+        Motorcycle motorcycle = new Motorcycle();
+        motorcycle.setId(UUID.randomUUID());
+        motorcycle.setModel("Test model");
+        motorcycle.setLicenseType("A");
+        motorcycle.setSeat(motorcycleDTO.getSeat());
+        motorcycle.setYear(motorcycleDTO.getYear());
+        motorcycle.setBrand(brand);
 
         given(brandService.createUniqueBrand(any(String.class))).willReturn(Mono.just(brand));
         given(repository.findById(id)).willReturn(Mono.just(motorcycle));
@@ -181,13 +178,14 @@ public class MotorcycleServiceTest {
     @Test
     public void testDeleteMotorcycle() {
         UUID id = UUID.randomUUID();
-        Motorcycle motorcycle = Motorcycle.builder()
-                .id(id)
-                .model("Test model")
-                .licenseType("A")
-                .year(2000)
-                .seat(2)
-                .build();
+
+        Motorcycle motorcycle = new Motorcycle();
+        motorcycle.setId(id);
+        motorcycle.setModel("Test model");
+        motorcycle.setLicenseType("A");
+        motorcycle.setSeat(2);
+        motorcycle.setYear(2000);
+
         given(repository.findById(id)).willReturn(Mono.just(motorcycle));
         this.motorcycleService.delete(id);
         then(repository).should(times(1)).findById(id);
@@ -197,14 +195,12 @@ public class MotorcycleServiceTest {
     private Flux<Motorcycle> generateMotorcycleList() {
         List<Motorcycle> list = new ArrayList<>();
         for(int i = 0; i< 3; i++) {
-            Motorcycle motorcycle = Motorcycle.builder()
-                    .id(UUID.randomUUID())
-                    .model("Test")
-                    .licenseType("A")
-                    .seat(2)
-                    .year(1999)
-                    .build();
-
+            Motorcycle motorcycle = new Motorcycle();
+            motorcycle.setId(UUID.randomUUID());
+            motorcycle.setModel("Test");
+            motorcycle.setLicenseType("A");
+            motorcycle.setSeat(2);
+            motorcycle.setYear(1999);
             list.add(motorcycle);
         }
 
