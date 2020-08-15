@@ -36,6 +36,8 @@ public class BrandController {
 
     @PostMapping
     public Mono<Brand> createBrand(@RequestBody BrandDTO brandDTO) {
-        return null;
+        UUID id = UUID.randomUUID();
+        brandDTO.setId(id);
+        return brandService.createUniqueBrandFromDTO(brandDTO);
     }
 }

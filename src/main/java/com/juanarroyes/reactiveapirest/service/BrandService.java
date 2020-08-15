@@ -20,7 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BrandService {
 
-    private BrandRepository brandRepository;
+    private final BrandRepository brandRepository;
 
     public Mono<Brand> createUniqueBrand(String brandName) {
         return brandRepository.findBrandByName(brandName)
@@ -28,21 +28,30 @@ public class BrandService {
     }
 
     public Mono<Brand> createBrand(String brandName) {
-        UUID uuid = UUID.randomUUID();
-        Brand brand = Brand.builder()
-                .id(uuid)
-                .name(brandName)
-                .createdAt(new Date())
-                .build();
-
+        UUID id = UUID.randomUUID();
+        Brand brand = new Brand();
+        brand.setId(id);
+        brand.setName(brandName);
+        brand.setCreatedAt(new Date());
         return brandRepository.save(brand);
     }
 
-   /* public Mono<Brand> createUniqueBrandFromDTO(BrandDTO brandDTO) {
+   public Mono<Brand> createUniqueBrandFromDTO(BrandDTO brandDTO) {
         return brandRepository.findBrandByName(brandDTO.getName())
-                .flatMap(brand -> Mono.error(new DuplicateDataException(String.format("Brand %s already exists", brand.getName()))))
+                .filterWhen(brand -> {
+                    if(brand != null) {
+                        
+                    }
+                })
+                /*.flatMap(brand -> {
+                            if(brand != null) {
+                                return Mono.error(new DuplicateDataException(String.format("Brand %s already exists", brand.getName())));
+                            }
+                            return Mono.empty();
+                        }
+                )*/
                 .switchIfEmpty(Mono.defer(() -> this.createBrandFromDTO(brandDTO)));
-    }*/
+    }
 
     private Mono<Brand> createBrandFromDTO(BrandDTO brandDTO) {
         Brand brand = BrandMapper.INSTANCE.fromDto(brandDTO);

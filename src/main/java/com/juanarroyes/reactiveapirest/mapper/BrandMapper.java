@@ -4,6 +4,7 @@ import com.juanarroyes.reactiveapirest.dto.BrandDTO;
 import com.juanarroyes.reactiveapirest.entity.Brand;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
@@ -18,5 +19,5 @@ public interface BrandMapper {
     Brand fromDto(BrandDTO brandDTO);
 
     @InheritInverseConfiguration(name = "toDto")
-    Brand updateFromDto(BrandDTO brandDTO, Brand brand);
+    Brand updateFromDto(BrandDTO brandDTO, @MappingTarget Brand brand);
 }
